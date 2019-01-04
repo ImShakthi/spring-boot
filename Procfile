@@ -1,2 +1,3 @@
-web: java $JAVA_OPTS -jar target/rest-service-v1.jar --port $PORT
+web: java -jar -Dserver.port=$PORT target/rest-service-v1.jar
+
 
