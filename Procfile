@@ -1,1 +1,2 @@
-web: java -cp target/classes:target/dependency/* com.sakthi.RestApplication
+web: java -jar target/rest-service-v1.jar
+
