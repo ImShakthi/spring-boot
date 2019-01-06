@@ -1,4 +1,4 @@
-package com.sakthi.entities;
+package com.sakthi.entity;
 
 import org.springframework.data.annotation.Id;
 

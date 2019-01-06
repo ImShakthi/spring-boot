@@ -2,7 +2,8 @@ package com.sakthi.repository;
 
 import java.util.List;
 
-import com.sakthi.entities.Customer;
+
+import com.sakthi.entity.Customer;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 

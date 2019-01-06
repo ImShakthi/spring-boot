@@ -1,51 +1,55 @@
 package com.sakthi;
 
-import com.sakthi.entities.Customer;
+import com.sakthi.entity.User;
 import com.sakthi.repository.CustomerRepository;
+import com.sakthi.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 @SpringBootApplication
-public class RestApplication implements CommandLineRunner {
+public class RestApplication {
 
   // https://spring.io/guides/gs/accessing-data-mongodb/
-  @Autowired private CustomerRepository repository;
+  @Autowired private CustomerRepository customerRepository;
+
+  @Autowired UserRepository userRepository;
 
   public static void main(String[] args) {
     SpringApplication.run(RestApplication.class, args);
   }
 
-    @Override
-    public void run(String... args) throws Exception {
+  @Bean
+  public CommandLineRunner commandLineRunner(final ApplicationContext ctx) {
+    return args -> {
+      System.out.print("<<<<<<<<<<<<<Cleaning MongoDatabase>>>>>>>>>>>>>>");
+//      userRepository.deleteAll();
+//
+//      for (int i = 0; i < 5; i++) {
+//        User user = userRepository.save(new User(i,"Test", String.valueOf(i + 12)));
+//
+//        System.out.println("<<<<<<<<<<<<<Adding User >>>>>>>>>>>>>>");
+//        System.out.println("***" + user.toString() + "***");
+//      }
+//
+//      System.out.println("<<<<<<<<<<<<<Get All  User >>>>>>>>>>>>>>");
+//      List<User> alluser = userRepository.findAll();
+//      alluser.forEach(item -> System.out.println(item));
+//
+//      alluser.clear();
+//
+//      System.out.println("<<<<<<<<<<<<<Find User By Name >>>>>>>>>>>>>>");
+//      alluser = userRepository.findByName("Test");
+//      alluser.forEach(item -> System.out.println(item));
 
-//      repository.deleteAll();
-//
-//      // save a couple of customers
-//      repository.save(new Customer("Alice", "Smith"));
-//      repository.save(new Customer("Bob", "Smith"));
-//
-//      // fetch all customers
-//      System.out.println("Customers found with findAll():");
-//      System.out.println("-------------------------------");
-//      for (Customer customer : repository.findAll()) {
-//        System.out.println(customer);
-//      }
-//      System.out.println();
-//
-//      // fetch an individual customer
-//      System.out.println("Customer found with findByFirstName('Alice'):");
-//      System.out.println("--------------------------------");
-//      System.out.println(repository.findByFirstName("Alice"));
-//
-//      System.out.println("Customers found with findByLastName('Smith'):");
-//      System.out.println("--------------------------------");
-//      for (Customer customer : repository.findByLastName("Smith")) {
-//        System.out.println(customer);
-//      }
-    }
+      System.out.println("Executed");
+    };
+  }
 
   //  @Bean
   //  public CommandLineRunner commandLineRunner(final ApplicationContext ctx) {
