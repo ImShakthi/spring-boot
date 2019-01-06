@@ -8,6 +8,9 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.springframework.data.mongodb.core.query.Criteria.where;
+import static org.springframework.data.mongodb.core.query.Query.query;
+
 @Service
 public class UserService {
   @Inject private UserRepository userRepository;
@@ -17,9 +20,7 @@ public class UserService {
   }
 
   public List<User> findByName(String name) {
-    List<User> users = new ArrayList<User>();
-    users.add(userRepository.findByName(name));
-    return users;
+    return userRepository.findByName(name);
   }
 
   public void deleteAll() {

@@ -25,29 +25,29 @@ public class RestApplication {
   @Bean
   public CommandLineRunner commandLineRunner(final ApplicationContext ctx) {
     return args -> {
-      System.out.print("<<<<<<<<<<<<<Cleaning MongoDatabase>>>>>>>>>>>>>>");
-      userService.deleteAll();
+//      System.out.print("<<<<<<<<<<<<<Cleaning MongoDatabase>>>>>>>>>>>>>>");
+//      userService.deleteAll();
+//
+//      for (int i = 0; i < 5; i++) {
+//        User user = userService.save(new User(i, "NewTestUser", String.valueOf(i + 100)));
+//
+//        System.out.println("<<<<<<<<<<<<<Adding User >>>>>>>>>>>>>>");
+//        System.out.println("***" + user.toString() + "***");
+//      }
+//
+//      System.out.println("<<<<<<<<<<<<<Get All  User >>>>>>>>>>>>>>");
+//      List<User> alluser = userService.findAll();
+//      alluser.forEach(item -> System.out.println(item));
+//
+//      alluser.clear();
 
-      for (int i = 0; i < 5; i++) {
-        User user = userService.save(new User(i, "NewTestUser", String.valueOf(i + 100)));
-
-        System.out.println("<<<<<<<<<<<<<Adding User >>>>>>>>>>>>>>");
-        System.out.println("***" + user.toString() + "***");
-      }
-
-      System.out.println("<<<<<<<<<<<<<Get All  User >>>>>>>>>>>>>>");
-      List<User> alluser = userService.findAll();
+      System.out.println("<<<<<<<<<<<<<Find User By Name >>>>>>>>>>>>>>");
+      List<User> alluser = userService.findByName("NewTestUser");
       alluser.forEach(item -> System.out.println(item));
 
-      alluser.clear();
+      System.out.println("<<<<<<<<<<<<<Find User By Id 1 = " + userService.findById(1));
 
-//      System.out.println("<<<<<<<<<<<<<Find User By Name >>>>>>>>>>>>>>");
-//      alluser = userService.findByName("NewTestUser");
-//      alluser.forEach(item -> System.out.println(item));
-
-      System.out.println("<<<<<<<<<<<<<Find User By Id 1 >>>>>>>>>>>>>>" + userService.findById(1));
-
-      System.out.println("Executed");
+//      System.out.println("Executed");
     };
   }
 

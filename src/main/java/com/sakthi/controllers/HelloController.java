@@ -23,15 +23,11 @@ public class HelloController {
   }
 
   @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-  public String getUser(@PathVariable("id") final int id) {
+  public User getUser(@PathVariable("id") final int id) {
     System.out.println(" Enter into get user = " + id);
 //    List<User> users = userService.findAll();
 //    User user = users.stream().filter(u -> u.getId() == id).findFirst().orElse(null);
 
-    User user = userService.findById(id);
-    if (user != null) {
-      return "Name =" + user.getName() + ", age =" + user.getAge();
-    }
-    return "No user found!";
+    return userService.findById(id);
   }
 }
