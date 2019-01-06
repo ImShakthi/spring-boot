@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.sakthi.entity.Customer;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 
 public interface CustomerRepository extends MongoRepository<Customer, String> {
 

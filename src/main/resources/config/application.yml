@@ -1,0 +1,7 @@
+multipart:
+  maxFileSize: 5Mb
+
+spring:
+  data:
+    mongodb:
+      database: heroku_wtltx4l0
