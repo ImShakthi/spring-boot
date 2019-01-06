@@ -1,4 +1,4 @@
-package com.sakthi.entity;
+package com.sakthi.restbox.models;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

@@ -1,4 +1,4 @@
-package com.sakthi.configuration;
+package com.sakthi.restbox.configuration;
 
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
@@ -18,39 +18,33 @@ import javax.inject.Inject;
 import static org.slf4j.LoggerFactory.*;
 
 @Configuration
-@EnableMongoRepositories("com.sakthi.repository")
+@EnableMongoRepositories("com.sakthi.restbox.repositories")
 @Import(value = MongoAutoConfiguration.class)
 public class DatabaseConfiguration extends AbstractMongoConfiguration {
 
-    private final Logger log = getLogger(DatabaseConfiguration.class);
+  private final Logger log = getLogger(DatabaseConfiguration.class);
 
-    @Inject
-    private MongoClient mongoClient;
+  @Inject private MongoClient mongoClient;
 
-    @Inject
-    private Mongo mongo;
+  @Inject private MongoProperties mongoProperties;
 
-    @Inject
-    private MongoProperties mongoProperties;
+  @Bean
+  public ValidatingMongoEventListener validatingMongoEventListener() {
+    return new ValidatingMongoEventListener(validator());
+  }
 
-    @Bean
-    public ValidatingMongoEventListener validatingMongoEventListener() {
-        return new ValidatingMongoEventListener(validator());
-    }
+  @Bean
+  public LocalValidatorFactoryBean validator() {
+    return new LocalValidatorFactoryBean();
+  }
 
-    @Bean
-    public LocalValidatorFactoryBean validator() {
-        return new LocalValidatorFactoryBean();
-    }
+  @Override
+  protected String getDatabaseName() {
+    return mongoProperties.getDatabase();
+  }
 
-    @Override
-    protected String getDatabaseName() {
-        return mongoProperties.getDatabase();
-    }
-
-
-    @Override
-    public MongoClient mongoClient() {
-        return mongoClient;
-    }
+  @Override
+  public MongoClient mongoClient() {
+    return mongoClient;
+  }
 }

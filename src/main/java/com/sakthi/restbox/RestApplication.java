@@ -1,9 +1,7 @@
-package com.sakthi;
+package com.sakthi.restbox;
 
-import com.sakthi.entity.User;
-import com.sakthi.repository.CustomerRepository;
-import com.sakthi.repository.UserRepository;
-import com.sakthi.service.UserService;
+import com.sakthi.restbox.models.User;
+import com.sakthi.restbox.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,15 +1,11 @@
-package com.sakthi.service;
+package com.sakthi.restbox.service;
 
-import com.sakthi.entity.User;
-import com.sakthi.repository.UserRepository;
+import com.sakthi.restbox.models.User;
+import com.sakthi.restbox.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
-
-import static org.springframework.data.mongodb.core.query.Criteria.where;
-import static org.springframework.data.mongodb.core.query.Query.query;
 
 @Service
 public class UserService {
