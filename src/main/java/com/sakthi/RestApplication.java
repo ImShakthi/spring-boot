@@ -3,6 +3,7 @@ package com.sakthi;
 import com.sakthi.entity.User;
 import com.sakthi.repository.CustomerRepository;
 import com.sakthi.repository.UserRepository;
+import com.sakthi.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,10 +16,7 @@ import java.util.List;
 @SpringBootApplication
 public class RestApplication {
 
-  // https://spring.io/guides/gs/accessing-data-mongodb/
-  @Autowired private CustomerRepository customerRepository;
-
-  @Autowired UserRepository userRepository;
+  @Autowired UserService userService;
 
   public static void main(String[] args) {
     SpringApplication.run(RestApplication.class, args);
@@ -28,24 +26,26 @@ public class RestApplication {
   public CommandLineRunner commandLineRunner(final ApplicationContext ctx) {
     return args -> {
       System.out.print("<<<<<<<<<<<<<Cleaning MongoDatabase>>>>>>>>>>>>>>");
-//      userRepository.deleteAll();
-//
-//      for (int i = 0; i < 5; i++) {
-//        User user = userRepository.save(new User(i,"Test", String.valueOf(i + 12)));
-//
-//        System.out.println("<<<<<<<<<<<<<Adding User >>>>>>>>>>>>>>");
-//        System.out.println("***" + user.toString() + "***");
-//      }
-//
-//      System.out.println("<<<<<<<<<<<<<Get All  User >>>>>>>>>>>>>>");
-//      List<User> alluser = userRepository.findAll();
-//      alluser.forEach(item -> System.out.println(item));
-//
-//      alluser.clear();
-//
+      userService.deleteAll();
+
+      for (int i = 0; i < 5; i++) {
+        User user = userService.save(new User(i, "NewTestUser", String.valueOf(i + 100)));
+
+        System.out.println("<<<<<<<<<<<<<Adding User >>>>>>>>>>>>>>");
+        System.out.println("***" + user.toString() + "***");
+      }
+
+      System.out.println("<<<<<<<<<<<<<Get All  User >>>>>>>>>>>>>>");
+      List<User> alluser = userService.findAll();
+      alluser.forEach(item -> System.out.println(item));
+
+      alluser.clear();
+
 //      System.out.println("<<<<<<<<<<<<<Find User By Name >>>>>>>>>>>>>>");
-//      alluser = userRepository.findByName("Test");
+//      alluser = userService.findByName("NewTestUser");
 //      alluser.forEach(item -> System.out.println(item));
+
+      System.out.println("<<<<<<<<<<<<<Find User By Id 1 >>>>>>>>>>>>>>" + userService.findById(1));
 
       System.out.println("Executed");
     };

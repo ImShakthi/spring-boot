@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class HelloController {
 
@@ -21,13 +23,15 @@ public class HelloController {
   }
 
   @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-  public String getUser(@PathVariable("id") final String id) {
+  public String getUser(@PathVariable("id") final int id) {
     System.out.println(" Enter into get user = " + id);
+//    List<User> users = userService.findAll();
+//    User user = users.stream().filter(u -> u.getId() == id).findFirst().orElse(null);
+
     User user = userService.findById(id);
-    System.out.println("User = " + user);
-    if (user == null) {
-      return "No user found!";
+    if (user != null) {
+      return "Name =" + user.getName() + ", age =" + user.getAge();
     }
-    return user.toString();
+    return "No user found!";
   }
 }
