@@ -6,6 +6,4 @@ spring:
     active: dev
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: heroku_wtltx4l0
+      uri: mongodb://admin:admin123@localhost:27017/heroku_wtltx4l0

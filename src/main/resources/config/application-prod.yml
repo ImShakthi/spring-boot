@@ -1,7 +1,6 @@
-
 spring:
   profiles:
     active: prod
   data:
     mongodb:
-      database: heroku_wtltx4l0
+      uri: mongodb://admin:admin123@ds149404.mlab.com:49404/heroku_wtltx4l0
