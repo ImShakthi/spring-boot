@@ -1,18 +1,18 @@
 package com.sakthi.restbox.controllers;
 
 import com.sakthi.restbox.models.User;
-
 import com.sakthi.restbox.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HelloController {
+  private final UserService userService;
 
-  @Autowired private UserService userService;
+  @Autowired
+  public HelloController(UserService userService) {
+    this.userService = userService;
+  }
 
   @RequestMapping("/")
   public String index() {
@@ -27,5 +27,10 @@ public class HelloController {
     //    User user = users.stream().filter(u -> u.getId() == id).findFirst().orElse(null);
 
     return userService.findById(id);
+  }
+
+  @GetMapping(value = "github/{userid}")
+  public ResponseBody getGithubUser(@PathVariable("userid") final String id) {
+    return null;
   }
 }

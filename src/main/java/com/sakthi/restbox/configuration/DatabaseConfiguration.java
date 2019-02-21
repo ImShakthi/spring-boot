@@ -1,8 +1,6 @@
 package com.sakthi.restbox.configuration;
 
-import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
-import org.slf4j.Logger;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoProperties;
 import org.springframework.context.annotation.Bean;
@@ -15,18 +13,19 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import javax.inject.Inject;
 
-import static org.slf4j.LoggerFactory.*;
-
 @Configuration
 @EnableMongoRepositories("com.sakthi.restbox.repositories")
 @Import(value = MongoAutoConfiguration.class)
 public class DatabaseConfiguration extends AbstractMongoConfiguration {
 
-  private final Logger log = getLogger(DatabaseConfiguration.class);
+  private final MongoClient mongoClient;
+  private final MongoProperties mongoProperties;
 
-  @Inject private MongoClient mongoClient;
-
-  @Inject private MongoProperties mongoProperties;
+  @Inject
+  public DatabaseConfiguration(MongoClient mongoClient, MongoProperties mongoProperties) {
+    this.mongoClient = mongoClient;
+    this.mongoProperties = mongoProperties;
+  }
 
   @Bean
   public ValidatingMongoEventListener validatingMongoEventListener() {

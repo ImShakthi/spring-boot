@@ -9,7 +9,12 @@ import java.util.List;
 
 @Service
 public class UserService {
-  @Inject private UserRepository userRepository;
+  private final UserRepository userRepository;
+
+  @Inject
+  public UserService(UserRepository userRepository) {
+    this.userRepository = userRepository;
+  }
 
   public User findById(int id) {
     return userRepository.findById(id);
