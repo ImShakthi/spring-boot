@@ -1,20 +1,22 @@
 package com.sakthi.restbox;
 
-import com.sakthi.restbox.models.User;
 import com.sakthi.restbox.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
 
 @SpringBootApplication
 public class RestApplication {
 
-  @Autowired UserService userService;
+  private final UserService userService;
+
+  @Autowired
+  public RestApplication(UserService userService) {
+    this.userService = userService;
+  }
 
   public static void main(String[] args) {
     SpringApplication.run(RestApplication.class, args);
@@ -22,31 +24,7 @@ public class RestApplication {
 
   @Bean
   public CommandLineRunner commandLineRunner(final ApplicationContext ctx) {
-    return args -> {
-      System.out.print("<<<<<<<<<<<<<Cleaning MongoDatabase>>>>>>>>>>>>>>");
-//      userService.deleteAll();
-//
-//      for (int i = 0; i < 5; i++) {
-//        User user = userService.save(new User(i, "TestUser", String.valueOf(i + 100)));
-//
-//        System.out.println("<<<<<<<<<<<<<Adding User >>>>>>>>>>>>>>");
-//        System.out.println("***" + user.toString() + "***");
-//      }
-//
-//      System.out.println("<<<<<<<<<<<<<Get All  User >>>>>>>>>>>>>>");
-//      List<User> alluser = userService.findAll();
-//      alluser.forEach(item -> System.out.println(item));
-//
-//      alluser.clear();
-//
-//      System.out.println("<<<<<<<<<<<<<Find User By Name >>>>>>>>>>>>>>");
-//      alluser = userService.findByName("TestUser");
-//      alluser.forEach(item -> System.out.println(item));
-//
-//      System.out.println("<<<<<<<<<<<<<Find User By Id 1 = " + userService.findById(1));
-
-//      System.out.println("Executed");
-    };
+    return args -> {};
   }
 
   //  @Bean

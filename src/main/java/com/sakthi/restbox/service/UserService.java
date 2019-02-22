@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -16,23 +17,12 @@ public class UserService {
     this.userRepository = userRepository;
   }
 
-  public User findById(int id) {
-    return userRepository.findById(id);
+  public User findById(final long id) {
+    Optional<User> maybeUser = userRepository.findById(id);
+    return maybeUser.orElse(null);
   }
 
-  public List<User> findByName(String name) {
-    return userRepository.findByName(name);
-  }
-
-  public void deleteAll() {
-    userRepository.deleteAll();
-  }
-
-  public User save(User user) {
-    return userRepository.save(user);
-  }
-
-  public List<User> findAll() {
+  public List<User> findAll(){
     return userRepository.findAll();
   }
 }

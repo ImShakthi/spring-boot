@@ -1,16 +1,23 @@
 package com.sakthi.restbox.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "users")
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 @Data
-@AllArgsConstructor
+@Entity
+@Table(name = "user_details")
 public class User {
-    @Id
-    private int id;
-    private String name;
-    private String age;
+  @Id
+  @Column(name = "id")
+  private Long id;
+
+  @Column(name = "name")
+  private String name;
+
+  @Column(name = "age")
+  private int age;
 }

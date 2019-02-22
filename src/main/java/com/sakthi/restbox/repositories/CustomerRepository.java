@@ -1,13 +1,10 @@
 package com.sakthi.restbox.repositories;
 
-import java.util.List;
-
 import com.sakthi.restbox.models.Customer;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface CustomerRepository extends MongoRepository<Customer, String> {
+import java.util.Optional;
 
-  Customer findByFirstName(String firstName);
-
-  List<Customer> findByLastName(String lastName);
+public interface CustomerRepository extends CrudRepository<Customer, Long> {
+  Optional<Customer> findById(Long id);
 }
