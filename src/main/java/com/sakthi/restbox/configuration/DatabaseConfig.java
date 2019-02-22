@@ -16,13 +16,13 @@ import javax.inject.Inject;
 @Configuration
 @EnableMongoRepositories("com.sakthi.restbox.repositories")
 @Import(value = MongoAutoConfiguration.class)
-public class DatabaseConfiguration extends AbstractMongoConfiguration {
+public class DatabaseConfig extends AbstractMongoConfiguration {
 
   private final MongoClient mongoClient;
   private final MongoProperties mongoProperties;
 
   @Inject
-  public DatabaseConfiguration(MongoClient mongoClient, MongoProperties mongoProperties) {
+  public DatabaseConfig(MongoClient mongoClient, MongoProperties mongoProperties) {
     this.mongoClient = mongoClient;
     this.mongoProperties = mongoProperties;
   }
